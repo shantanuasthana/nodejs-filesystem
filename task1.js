@@ -10,7 +10,7 @@ var date = new Date();
 //File Write operation
 app.post("/write-file", function(req,res){
 
-    fs.writeFileSync("./TextFiles/"+date.getUTCDate()+".txt", date, function(err){
+    fs.writeFileSync("./TextFiles/"+date.getUTCDate()+"_"+date.getUTCHours()+"_"+date.getUTCMinutes()+".txt", date, function(err){
         if(err) throw err;
     });
     res.json({
@@ -19,7 +19,7 @@ app.post("/write-file", function(req,res){
 });
 
 //Read Operation
-app.get("/get-all-text-files", function(req,res){
+app.get("/get-all-files", function(req,res){
     let listOfFiles = [];
     fs.readdirSync("./TextFiles").forEach((file)=>{
         listOfFiles.push(file);
